@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: laroa-service
+  labels:
+    app: laroa
+spec:
+  type: LoadBalancer
+  externalIPs:
+  -  192.168.56.11
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  selector:
+    app: laroa
+  sessionAffinity: None
