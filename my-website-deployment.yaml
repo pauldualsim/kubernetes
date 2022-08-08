@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laroa-deployment
+  labels:
+    app: laroa
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: laroa
+  template:
+    metadata:
+      labels:
+        app: laroa
+    spec:
+      containers:
+      - name: nginx
+        image: pauldualsim/laroa:nginx
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+            name: http
+          - containerPort: 443
+            name: https
